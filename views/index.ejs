@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App </title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="weather-container">
+    <h2>Weather App</h2>
+    <form id="cityForm" method="POST" action="/weather">
+        <label for="cityInput">Enter City:</label>
+        <input type="text" id="cityInput" name="city" required>
+        <button type="submit">Search</button>
+    </form>
+    
+  <% if (locals.weatherData) { %>
+    <img src="http://openweathermap.org/img/wn/<%= weatherData.icon %>@2x.png" alt="Weather Icon">
+    <div id="temp-div"><h2><%= Math.round(weatherData.temp) %>°C</h2></div>
+    <div id="city"><p><%= weatherData.city %></p></div>
+    <div id="weather-info"><%= weatherData.description %></div>
+    <div id="hourly-forecast"></div>
+  <% } %>
+
+  <% if (locals.error){ %>
+      <p> <%=error%> </p>
+  <%}%>
+</div> 
+</body>
+</html> 
